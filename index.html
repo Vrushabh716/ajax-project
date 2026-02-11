@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Repo Search</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <h2>Find GitHub Repositories</h2>
+    <input type="text" id="username" placeholder="Enter GitHub Username">
+    <button onclick="getRepos()">Get Repositories</button>
+
+    <table id="repoTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Repository Name</th>
+                <th>Description</th>
+                <th>Stars</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        function getRepos() {
+            const user = document.getElementById('username').value;
+            const url = `https://api.github.com/users/${user}/repos`;
+            const table = document.getElementById('repoTable');
+            const tbody = document.getElementById('tableBody');
+
+            // Clear previous results
+            tbody.innerHTML = "";
+
+            if (!user) {
+                alert("Please enter a username");
+                return;
+            }
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error("User not found");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length === 0) {
+                        alert("No public repositories found for this user.");
+                        return;
+                    }
+                    
+                    // Show table
+                    table.style.display = "table";
+
+                    data.forEach(repo => {
+                        const row = `<tr>
+                            <td>${repo.name}</td>
+                            <td>${repo.description ? repo.description : "No description"}</td>
+                            <td>${repo.stargazers_count}</td>
+                            <td><a href="${repo.html_url}" target="_blank">View</a></td>
+                        </tr>`;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(error.message);
+                    table.style.display = "none";
+                });
+        }
+    </script>
+</body>
+</html>
