@@ -1,29 +1,24 @@
-AJAX + REST API Mini Project 🚀
+# AJAX GitHub Repo Finder 🚀
 
-A tiny frontend project that uses AJAX (Fetch API) to pull live data from real REST APIs and show it in clean HTML tables.
+A simple frontend project that uses **AJAX (Fetch API)** to fetch live data from the **GitHub REST API** and display it in a styled HTML table.
 
-What it does
+## What this project does
+Enter a GitHub username → instantly see all public repositories with:
+- Repository name
+- Description
+- Stars ⭐
+- Direct link
 
-🔎 Get all public GitHub repositories of any user
+## Tech Used
+HTML • CSS • JavaScript • AJAX • REST API • JSON
 
-🌍 List all universities in any country
+## API Used
+https://api.github.com/users/{username}/repos
 
-Tech used
+## How to Run
+Open `index.html` with Live Server and enter any GitHub username.
 
-HTML • CSS • JavaScript • AJAX • JSON • REST API
+## Purpose
+Created for an academic assignment to demonstrate AJAX and REST API usage.
 
-APIs
-
-GitHub: api.github.com/users/{username}/repos
-
-Universities: universities.hipolabs.com/search?country=
-
-Run it
-
-Open index.html with Live Server, enter input, watch tables fill up ✨
-
-Purpose
-
-Built for an academic assignment to demonstrate AJAX + REST API integration.
-
-Author: Vrushabh Sontakke
+**Author:** Vrushabh Sontakke
